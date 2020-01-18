@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>客户端使用说明 </title>
+</head>
+<body>
+<h2>
+    西瓜支付自动监控版本配置说明
+</h2>
+
+
+<h3>
+    1&nbsp;下载相关软件并安装到安卓手机，推荐使用安卓内核版本5-8,xposed较为稳定.建议保持屏幕常亮，部分手机屏幕关了可能会导致服务不可用。&nbsp;<br/>
+</h3>
+<p>
+    请关闭系统自动更新
+</p>
+<p>
+    xposed:<a href="javascript:void(0)" onclick="down('https://agent.xiguapays.com/android/xposed.apk','xposed')">扫码下载</a>
+</p>
+<p>
+    西瓜服务：<a href="javascript:void(0)" href=""
+            onclick="down('https://agent.xiguapays.com/android/xigua.apk','西瓜')">扫码下载</a>
+</p>
+<p>
+    支付宝：<a href="javascript:void(0)" href=""
+           onclick="down('https://agent.xiguapays.com/android/Alipay.apk','支付宝')">扫码下载</a>
+</p>
+<p>
+    微信：<a href="javascript:void(0)" onclick="down('https://agent.xiguapays.com/android/wechat7.0.3.apk','微信')">扫码下载</a>
+</p>
+
+<div id="showQrcode" style="display: none; padding:50px;margin:0 auto">
+
+</div>
+
+<p>
+
+    安装上述软件并关闭手机系统软件自动更新
+</p>
+<h3>
+    2&nbsp;环境配置
+</h3>
+<p>
+    &nbsp; 1.打开xp&nbsp;点击模块安装
+</p>
+<p>
+    &nbsp;<img src="./images/help/1.png"/>
+</p>
+<p>
+    &nbsp; 2.进入设置模块点击添加应用
+</p>
+<p>
+    &nbsp;<img src="./images/help/2.png"/> &nbsp; &nbsp; &nbsp;<img src="./images/help/3.png"/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    &nbsp; 3.回到设置页面点击模块管理，勾选西瓜服务然后重启xposed
+</p>
+<p>
+    &nbsp;<img src="./images/help/4.png"/>
+    &nbsp; &nbsp; &nbsp;<img src="./images/help/5.png"/>
+    &nbsp; &nbsp; &nbsp;<img src="./images/help/6.png"/>
+</p>
+<p>
+    &nbsp; 5.回到xposed首页，上滑进入应用管理，<span style="color:red">注意微信支付宝及西瓜服务均需要在xposed里面启动。不要在你的桌面上启动应用</span>
+</p>
+<p>
+    &nbsp;<img src="./images/help/6.png"/>
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./images/help/7.png"/>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="./images/help/8.png"/>
+</p>
+<p>
+    &nbsp;6.在后台添加设备，获取token
+</p>
+<p>
+    &nbsp;<img src="./images/help/9.png"/>
+</p>
+<p>
+    &nbsp;7.配置西瓜服务并启动，后台即可看到设备在线
+</p>
+<p>
+    &nbsp;<img src="./images/help/10.png"/>
+</p>
+<p>
+    &nbsp;8.点击测试支付宝/微信，能够进行收款界面然后闪回到微信/支付宝的首页，则表明可以正常监控
+</p>
+<p>
+
+    &nbsp;<img src="./images/help/11.png"/>
+</p>
+<p>
+    &nbsp;9.在微信/支付宝内点击收款，任意金额如0.01，然后用另一个手机扫码支付。支付成功以后，后台的自动监控账号管理里面即可看到新的收款账号列表。 &nbsp; &nbsp;
+</p>
+<p>
+    <span style="color:red">注意此时的收款二维码并没有，请选择对应的账号，输入该账号的收款码并启用。到此环境配置完成</span>
+</p>
+<p>
+
+    &nbsp;<img src="./images/help/12.png"/>
+</p>
+<p>
+
+    &nbsp;<img src="./images/help/13.png"/>
+</p>
+
+</body>
+</html>
+<script type="text/javascript" src="./js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="./js/layer/layer.js"></script>
+<script type="text/javascript" src="./js/qrcode/qrcode.min.js"></script>
+
+<script type="text/javascript">
+    function down(url, title) {
+        // var qrcode = new QRCode("showQrcode");
+        //     qrcode.clear(); // 清除代码
+        //    qrcode = new QRCode("showQrcode", {
+        //         text: url,
+        //         width: 200,
+        //         height: 200,
+        //         colorDark : "#000000",
+        //         colorLight : "#ffffff",
+        //         correctLevel : QRCode.CorrectLevel.H
+        //     });
+
+        $('#showQrcode').html("")
+        new QRCode(document.getElementById("showQrcode"), url);  // 设置要生成二维码的链接
+
+        // body...
+        layer.open({
+            type: 1,
+            title: "请扫码下载" + title,
+            area: ['400px', '400px'], //宽高
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 1, //不显示关闭按钮
+            shadeClose: true, //开启遮罩关闭
+            content: $('#showQrcode')
+        });
+    }
+</script>

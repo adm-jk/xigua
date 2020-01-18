@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>谷歌验证器使用说明 </title>
+</head>
+<body>
+<h2>
+   谷歌验证器使用指南
+</h2>
+<h3 style="color: #00bcd4">为了提升您的账户安全性,强烈推荐您在个人中心开启谷歌验证！</h3>
+
+<p>
+    身份验证器:<a href="javascript:void(0)"
+             onclick="down('https://agent.xiguapays.com/android/google_auth.apk','google_auth')">点击扫码下载安装</a>&nbsp; <span style="color: red">开启后请您妥善保管秘钥，如果秘钥遗失导致无法正常登录，请联系平台获取</span>
+</p>
+
+  &nbsp;<img style="max-width: 1000px;" src="./images/google0.png"/>
+
+
+<div id="showQrcode" style="display: none; padding:50px;margin:0 auto">
+
+</div>
+
+<h3>
+    Step1:安装以后打开软件,按如下操作提示绑定秘钥，即可动态查看您的验证码。</span>
+</h3>
+<p>
+    <p>
+    &nbsp;<img src="./images/auth1.png"/>
+    &nbsp; &nbsp; &nbsp;<img src="./images/auth2.png"/>
+    &nbsp; &nbsp; &nbsp;<img src="./images/auth3.png"/>
+</p>
+</p>
+
+<h3>
+   Step2:再次登录时系统会要求您输入谷歌验证码,请在有效期内输入即可正常登录系统。
+</h3>
+<p>
+    &nbsp;<img src="./images/google1.png"/>
+</p>
+
+</body>
+</html>
+<script type="text/javascript" src="./js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="./js/layer/layer.js"></script>
+<script type="text/javascript" src="./js/qrcode/qrcode.min.js"></script>
+
+<script type="text/javascript">
+    function down(url, title) {
+        // var qrcode = new QRCode("showQrcode");
+        //     qrcode.clear(); // 清除代码
+        //    qrcode = new QRCode("showQrcode", {
+        //         text: url,
+        //         width: 200,
+        //         height: 200,
+        //         colorDark : "#000000",
+        //         colorLight : "#ffffff",
+        //         correctLevel : QRCode.CorrectLevel.H
+        //     });
+
+        $('#showQrcode').html("")
+        new QRCode(document.getElementById("showQrcode"), url);  // 设置要生成二维码的链接
+
+        // body...
+        layer.open({
+            type: 1,
+            title: "请扫码下载" + title,
+            area: ['400px', '400px'], //宽高
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 1, //不显示关闭按钮
+            shadeClose: true, //开启遮罩关闭
+            content: $('#showQrcode')
+        });
+    }
+</script>
